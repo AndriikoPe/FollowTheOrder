@@ -19,6 +19,8 @@
 		BFCF2A2A2845478F00DFCA37 /* StartGameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BFCF2A292845478F00DFCA37 /* StartGameScene.sks */; };
 		BFCF2A2C284614F300DFCA37 /* FollowTheOrderGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A2B284614F300DFCA37 /* FollowTheOrderGame.swift */; };
 		BFCF2A2E2846187200DFCA37 /* GameIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A2D2846187200DFCA37 /* GameIcon.swift */; };
+		BFCF2A38284659EF00DFCA37 /* SelectionSignNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A36284659EF00DFCA37 /* SelectionSignNode.swift */; };
+		BFCF2A39284659EF00DFCA37 /* GameIconNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A37284659EF00DFCA37 /* GameIconNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +37,8 @@
 		BFCF2A292845478F00DFCA37 /* StartGameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartGameScene.sks; sourceTree = "<group>"; };
 		BFCF2A2B284614F300DFCA37 /* FollowTheOrderGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowTheOrderGame.swift; sourceTree = "<group>"; };
 		BFCF2A2D2846187200DFCA37 /* GameIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIcon.swift; sourceTree = "<group>"; };
+		BFCF2A36284659EF00DFCA37 /* SelectionSignNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionSignNode.swift; sourceTree = "<group>"; };
+		BFCF2A37284659EF00DFCA37 /* GameIconNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameIconNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +71,7 @@
 		BFCF2A0B2845409000DFCA37 /* FollowTheOrder */ = {
 			isa = PBXGroup;
 			children = (
+				BFCF2A35284659C400DFCA37 /* Nodes */,
 				BFCF2A0C2845409000DFCA37 /* AppDelegate.swift */,
 				BFCF2A142845409000DFCA37 /* GameViewController.swift */,
 				BFCF2A162845409000DFCA37 /* Main.storyboard */,
@@ -97,6 +102,15 @@
 				BFCF2A292845478F00DFCA37 /* StartGameScene.sks */,
 			);
 			path = Scenes;
+			sourceTree = "<group>";
+		};
+		BFCF2A35284659C400DFCA37 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				BFCF2A37284659EF00DFCA37 /* GameIconNode.swift */,
+				BFCF2A36284659EF00DFCA37 /* SelectionSignNode.swift */,
+			);
+			path = Nodes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +193,8 @@
 				BFCF2A0D2845409000DFCA37 /* AppDelegate.swift in Sources */,
 				BFCF2A24284541F800DFCA37 /* Constants+Utils.swift in Sources */,
 				BFCF2A2C284614F300DFCA37 /* FollowTheOrderGame.swift in Sources */,
+				BFCF2A38284659EF00DFCA37 /* SelectionSignNode.swift in Sources */,
+				BFCF2A39284659EF00DFCA37 /* GameIconNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

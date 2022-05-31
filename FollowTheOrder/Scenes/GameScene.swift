@@ -7,30 +7,8 @@
 
 import SpriteKit
 
-class GameIconNode: SKSpriteNode {
-    let gameIcon: GameIcon
-    
-    init(using gameIcon: GameIcon) {
-        self.gameIcon = gameIcon
-        let texture = SKTexture(imageNamed: gameIcon.type.rawValue)
-        super.init(texture: texture, color: .clear, size: texture.size())
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
 class GameScene: SKScene {
-    private var level: Int = {
-        // Returns 0 if no value for that key.
-        UserDefaults.standard.integer(forKey: Constants.levelUserDefaultsKey)
-    }() {
-        didSet {
-            UserDefaults.standard.set(level, forKey: Constants.levelUserDefaultsKey)
-        }
-    }
-    
+    private var selectionIndicators = [SKLabelNode]()
     private var dealingIcons = false
     
     var game: FollowTheOrderGame?
@@ -39,15 +17,39 @@ class GameScene: SKScene {
         createIcons(in: view)
     }
     
+    override var isUserInteractionEnabled: Bool {
+        get { !dealingIcons }
+        set { dealingIcons = !newValue }
+    }
+    
+    // MARK: - Selecting icons.
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard !dealingIcons else { return }
         for touch in touches {
             guard let tappedIcon = nodes(at: touch.location(in: self))
                     .first(where: { $0 is GameIconNode }) as? GameIconNode
             else { continue }
-            game?.tappedIcon(with: tappedIcon.gameIcon.id)
+            if game?.tappedIcon(with: tappedIcon.gameIcon.id) ?? false {
+                let scale = SKAction.scale(by: 0.9, duration: 0.15)
+                tappedIcon.run(scale)
+                addSelectionSign(at: touch.location(in: self))
+                if let status = game?.status, status != .progressing {
+                    finishGame(with: status)
+                }
+            }
         }
     }
+    
+    private func addSelectionSign(at location: CGPoint) {
+        let node = SelectionSignNode(
+            at: location,
+            radius: CGFloat(DrawingConst.iconSide) / 4.0,
+            value: "\(game?.numberOfSelectedItems ?? -1)"
+        )
+        addChild(node)
+    }
+    
+    // MARK: - Creating icons.
     
     private func createIcons(in view: SKView) {
         guard let game = game else { return }
@@ -79,6 +81,29 @@ class GameScene: SKScene {
         }
     }
     
+    // MARK: - Game ending.
+    
+    private func finishGame(with status: FollowTheOrderGame.Status) {
+        switch status {
+        case .won:
+            win()
+        case .lost:
+            lose()
+        default:
+            break
+        }
+    }
+    
+    private func win() {
+        print("You won")
+    }
+    
+    private func lose() {
+        print("You lost LOL")
+    }
+    
+    // MARK: - Constants.
+
     private struct DrawingConst {
         static let iconsTopOffset = 150
         static let iconSide = 80

@@ -30,10 +30,6 @@ class GameViewController: UIViewController {
             view.showsNodeCount = true
         }
     }
-    
-    override var shouldAutorotate: Bool {
-        return true
-    }
 
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         .portrait

@@ -18,7 +18,13 @@ struct FollowTheOrderGame {
         level + 4
     }
     
+    var numberOfSelectedItems: Int {
+        selectionSequence.count
+    }
+    
+    private(set) var status = Status.progressing
     private(set) var icons = [GameIcon]()
+    
     private var selectionSequence = [Int]()
     
     init() {
@@ -35,7 +41,30 @@ struct FollowTheOrderGame {
         icons = (0..<numberOfItems).map { _ in GameIcon(type: Constants.IconType.randomIcon) }
     }
     
-    mutating func tappedIcon(with id: GameIcon.ID) {
-        
+    mutating func tappedIcon(with id: GameIcon.ID) -> Bool {
+        guard let index = icons.firstIndex(where: { $0.id == id }),
+              !selectionSequence.contains(index) else { return false }
+        selectionSequence.append(index)
+        if icons.count == selectionSequence.count {
+            checkResults()
+        }
+        return true
+    }
+    
+    func isSelected(_ id: GameIcon.ID) -> Bool {
+        selectionSequence.contains(where: { icons[$0].id == id })
+    }
+    
+    private mutating func checkResults() {
+        var index = -1
+        let victory = selectionSequence.allSatisfy {
+            index += 1
+            return $0 == index
+        }
+        status = victory ? .won : .lost
+    }
+    
+    enum Status {
+        case won, lost, progressing
     }
 }
