@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF863F1E2846939C00EBFB75 /* Victory.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF863F1D2846939C00EBFB75 /* Victory.mp3 */; };
+		BF863F2228469EE800EBFB75 /* Deal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF863F2028469EE800EBFB75 /* Deal.mp3 */; };
+		BF863F2328469EE800EBFB75 /* Deal_last.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF863F2128469EE800EBFB75 /* Deal_last.mp3 */; };
+		BF863F252846A05900EBFB75 /* Select.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF863F242846A05900EBFB75 /* Select.mp3 */; };
+		BF863F272846A1E100EBFB75 /* Loss.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF863F262846A1E100EBFB75 /* Loss.mp3 */; };
 		BFCF2A0D2845409000DFCA37 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A0C2845409000DFCA37 /* AppDelegate.swift */; };
 		BFCF2A0F2845409000DFCA37 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = BFCF2A0E2845409000DFCA37 /* GameScene.sks */; };
 		BFCF2A132845409000DFCA37 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A122845409000DFCA37 /* GameScene.swift */; };
@@ -21,9 +26,18 @@
 		BFCF2A2E2846187200DFCA37 /* GameIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A2D2846187200DFCA37 /* GameIcon.swift */; };
 		BFCF2A38284659EF00DFCA37 /* SelectionSignNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A36284659EF00DFCA37 /* SelectionSignNode.swift */; };
 		BFCF2A39284659EF00DFCA37 /* GameIconNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A37284659EF00DFCA37 /* GameIconNode.swift */; };
+		BFCF2A3F28465F9300DFCA37 /* LoseExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = BFCF2A3E28465F9300DFCA37 /* LoseExplosion.sks */; };
+		BFCF2A432846652900DFCA37 /* VictoryExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = BFCF2A412846652900DFCA37 /* VictoryExplosion.sks */; };
+		BFCF2A46284667F300DFCA37 /* EndGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A45284667F300DFCA37 /* EndGameScene.swift */; };
+		BFCF2A482846694300DFCA37 /* FortuneProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCF2A472846694300DFCA37 /* FortuneProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF863F1D2846939C00EBFB75 /* Victory.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Victory.mp3; sourceTree = "<group>"; };
+		BF863F2028469EE800EBFB75 /* Deal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Deal.mp3; sourceTree = "<group>"; };
+		BF863F2128469EE800EBFB75 /* Deal_last.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Deal_last.mp3; sourceTree = "<group>"; };
+		BF863F242846A05900EBFB75 /* Select.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Select.mp3; sourceTree = "<group>"; };
+		BF863F262846A1E100EBFB75 /* Loss.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Loss.mp3; sourceTree = "<group>"; };
 		BFCF2A092845409000DFCA37 /* FollowTheOrder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FollowTheOrder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFCF2A0C2845409000DFCA37 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BFCF2A0E2845409000DFCA37 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -39,6 +53,11 @@
 		BFCF2A2D2846187200DFCA37 /* GameIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIcon.swift; sourceTree = "<group>"; };
 		BFCF2A36284659EF00DFCA37 /* SelectionSignNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionSignNode.swift; sourceTree = "<group>"; };
 		BFCF2A37284659EF00DFCA37 /* GameIconNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameIconNode.swift; sourceTree = "<group>"; };
+		BFCF2A3E28465F9300DFCA37 /* LoseExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LoseExplosion.sks; sourceTree = "<group>"; };
+		BFCF2A412846652900DFCA37 /* VictoryExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = VictoryExplosion.sks; sourceTree = "<group>"; };
+		BFCF2A45284667F300DFCA37 /* EndGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameScene.swift; sourceTree = "<group>"; };
+		BFCF2A472846694300DFCA37 /* FortuneProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FortuneProvider.swift; sourceTree = "<group>"; };
+		BFCF2A492846708300DFCA37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +71,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BF863F1F2846939F00EBFB75 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				BF863F262846A1E100EBFB75 /* Loss.mp3 */,
+				BF863F242846A05900EBFB75 /* Select.mp3 */,
+				BF863F2128469EE800EBFB75 /* Deal_last.mp3 */,
+				BF863F2028469EE800EBFB75 /* Deal.mp3 */,
+				BF863F1D2846939C00EBFB75 /* Victory.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		BFCF2A002845408F00DFCA37 = {
 			isa = PBXGroup;
 			children = (
@@ -71,13 +102,19 @@
 		BFCF2A0B2845409000DFCA37 /* FollowTheOrder */ = {
 			isa = PBXGroup;
 			children = (
-				BFCF2A35284659C400DFCA37 /* Nodes */,
+				BFCF2A492846708300DFCA37 /* Info.plist */,
 				BFCF2A0C2845409000DFCA37 /* AppDelegate.swift */,
 				BFCF2A142845409000DFCA37 /* GameViewController.swift */,
+				BFCF2A23284541F800DFCA37 /* Constants+Utils.swift */,
+				BFCF2A472846694300DFCA37 /* FortuneProvider.swift */,
 				BFCF2A162845409000DFCA37 /* Main.storyboard */,
+				BFCF2A35284659C400DFCA37 /* Nodes */,
+				BFCF2A4028465F9C00DFCA37 /* Particles */,
+				BF863F1F2846939F00EBFB75 /* Sounds */,
 				BFCF2A302846189E00DFCA37 /* Scenes */,
 				BFCF2A2F2846188F00DFCA37 /* Model */,
-				BFCF2A23284541F800DFCA37 /* Constants+Utils.swift */,
+				BFCF2A3E28465F9300DFCA37 /* LoseExplosion.sks */,
+				BFCF2A412846652900DFCA37 /* VictoryExplosion.sks */,
 				BFCF2A192845409200DFCA37 /* Assets.xcassets */,
 				BFCF2A1B2845409200DFCA37 /* LaunchScreen.storyboard */,
 			);
@@ -100,6 +137,7 @@
 				BFCF2A0E2845409000DFCA37 /* GameScene.sks */,
 				BFCF2A272845463900DFCA37 /* StartGameScene.swift */,
 				BFCF2A292845478F00DFCA37 /* StartGameScene.sks */,
+				BFCF2A45284667F300DFCA37 /* EndGameScene.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -111,6 +149,13 @@
 				BFCF2A36284659EF00DFCA37 /* SelectionSignNode.swift */,
 			);
 			path = Nodes;
+			sourceTree = "<group>";
+		};
+		BFCF2A4028465F9C00DFCA37 /* Particles */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Particles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,11 +216,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF863F2328469EE800EBFB75 /* Deal_last.mp3 in Resources */,
+				BF863F2228469EE800EBFB75 /* Deal.mp3 in Resources */,
 				BFCF2A182845409000DFCA37 /* Main.storyboard in Resources */,
+				BF863F272846A1E100EBFB75 /* Loss.mp3 in Resources */,
+				BF863F1E2846939C00EBFB75 /* Victory.mp3 in Resources */,
 				BFCF2A2A2845478F00DFCA37 /* StartGameScene.sks in Resources */,
 				BFCF2A0F2845409000DFCA37 /* GameScene.sks in Resources */,
+				BFCF2A432846652900DFCA37 /* VictoryExplosion.sks in Resources */,
 				BFCF2A1A2845409200DFCA37 /* Assets.xcassets in Resources */,
+				BFCF2A3F28465F9300DFCA37 /* LoseExplosion.sks in Resources */,
 				BFCF2A1D2845409200DFCA37 /* LaunchScreen.storyboard in Resources */,
+				BF863F252846A05900EBFB75 /* Select.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,10 +238,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCF2A482846694300DFCA37 /* FortuneProvider.swift in Sources */,
 				BFCF2A132845409000DFCA37 /* GameScene.swift in Sources */,
 				BFCF2A152845409000DFCA37 /* GameViewController.swift in Sources */,
 				BFCF2A282845463900DFCA37 /* StartGameScene.swift in Sources */,
 				BFCF2A2E2846187200DFCA37 /* GameIcon.swift in Sources */,
+				BFCF2A46284667F300DFCA37 /* EndGameScene.swift in Sources */,
 				BFCF2A0D2845409000DFCA37 /* AppDelegate.swift in Sources */,
 				BFCF2A24284541F800DFCA37 /* Constants+Utils.swift in Sources */,
 				BFCF2A2C284614F300DFCA37 /* FollowTheOrderGame.swift in Sources */,
@@ -345,6 +399,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9VD63Y2NJT;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FollowTheOrder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -374,6 +429,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9VD63Y2NJT;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FollowTheOrder/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
