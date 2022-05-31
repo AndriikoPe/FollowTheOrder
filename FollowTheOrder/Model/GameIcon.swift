@@ -7,6 +7,7 @@
 
 import Foundation
 
-struct GameIcon {
-    
+struct GameIcon: Identifiable {
+    let id = UUID()
+    let type: Constants.IconType
 }
