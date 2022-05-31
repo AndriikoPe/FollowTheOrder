@@ -120,7 +120,7 @@ class GameScene: SKScene {
 
                 let endGameScene = EndGameScene(size: self.size)
                 endGameScene.text = fortune
-                endGameScene.status = self.game?.status
+                endGameScene.game = self.game
                 endGameScene.scaleMode = .resizeFill
                 
                 self.view?.presentScene(endGameScene, transition: transition)
@@ -136,7 +136,7 @@ class GameScene: SKScene {
             
             let endGameScene = EndGameScene(size: self.size)
             endGameScene.text = "Oooops"
-            endGameScene.status = self.game?.status
+            endGameScene.game = self.game
             endGameScene.scaleMode = .resizeFill
             
             self.view?.presentScene(endGameScene, transition: transition)

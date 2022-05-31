@@ -51,6 +51,15 @@ struct FollowTheOrderGame {
         return true
     }
     
+    mutating func playAgain() {
+        if status == .won {
+            level += 1
+        }
+        status = .progressing
+        fillIcons()
+        selectionSequence.removeAll(keepingCapacity: true)
+    }
+    
     func isSelected(_ id: GameIcon.ID) -> Bool {
         selectionSequence.contains(where: { icons[$0].id == id })
     }
