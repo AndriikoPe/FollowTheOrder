@@ -158,7 +158,7 @@ class GameScene: SKScene {
     
     private func lose() {
         removeWithParticles(named: Constants.loseExplosionFileName)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+        run(SKAction.wait(forDuration: 1)) { [weak self] in
             guard let self = self else { return }
             let transition = SKTransition.doorsCloseHorizontal(
                 withDuration: Constants.standardTransitionDuration
