@@ -31,10 +31,16 @@ class GameScene: SKScene {
                     .first(where: { $0 is GameIconNode }) as? GameIconNode
             else { continue }
             if game?.tappedIcon(with: tappedIcon.gameIcon.id) ?? false {
-                let scale = SKAction.scale(by: 0.9, duration: 0.15)
+                let scale = SKAction.scale(
+                    by: DrawingConst.scaleOnTapValue,
+                    duration: DrawingConst.scaleOnTapDuration
+                )
                 tappedIcon.run(scale)
-                run(Constants.selectSound)
-                addSelectionSign(at: touch.location(in: self))
+                run(Resources.selectSound)
+                addSelectionSign(
+                    with: DrawingConst.selectionSignRadius,
+                    at: touch.location(in: self)
+                )
                 if let status = game?.status, status != .progressing {
                     finishGame(with: status)
                 }
@@ -42,10 +48,10 @@ class GameScene: SKScene {
         }
     }
     
-    private func addSelectionSign(at location: CGPoint) {
+    private func addSelectionSign(with radius: CGFloat, at location: CGPoint) {
         let node = SelectionSignNode(
             at: location,
-            radius: CGFloat(DrawingConst.iconSide) / 4.0,
+            radius: radius,
             value: "\(game?.numberOfSelectedItems ?? -1)"
         )
         selectionIndicators.append(node)
@@ -57,19 +63,23 @@ class GameScene: SKScene {
     private func createIcons(in view: SKView) {
         guard let game = game else { return }
         dealingIcons = true
-        let rows = min((game.numberOfItems - 1) >> 1, 3)
+        
+        let iconSide = Int(size.width * DrawingConst.iconSideFactor)
+        let iconSize = CGSize(width: iconSide, height: iconSide)
+        
+        let rows = min((game.numberOfItems - 1) >> 1, DrawingConst.maxIconsRows)
         let containerSize = Int(size.width) / rows
-        let scatteringRange = DrawingConst.minIconScattering...(containerSize - DrawingConst.iconSide)
+        let scatteringRange = (DrawingConst.minIconsScattering)...(containerSize - iconSide)
         let positions = game.icons.indices.map { index -> CGPoint in
             let xPos = Int.random(in: scatteringRange) + (index % rows) * containerSize
             let yPos = Int(size.height) - (index / rows) * containerSize -
                 Int.random(in: scatteringRange) - DrawingConst.iconsTopOffset
             return CGPoint(x: xPos, y: yPos)
         }
-        dealIcons(at: positions.shuffled())
+        dealIcons(with: iconSize, at: positions.shuffled())
     }
-    
-    private func dealIcons(at positions: [CGPoint]) {
+
+    private func dealIcons(with iconSize: CGSize, at positions: [CGPoint]) {
         guard let game = game else { return }
         positions.indices.forEach { [weak self] index in
             DispatchQueue.main.asyncAfter(deadline: .now() +
@@ -77,14 +87,14 @@ class GameScene: SKScene {
                 let icon = GameIconNode(using: game.icons[index])
                 self?.iconsNodes.append(icon)
                 icon.position = positions[index]
-                icon.size = DrawingConst.iconSize
+                icon.size = iconSize
                 self?.addChild(icon)
                 // Check if dealt last icon.
                 if index == game.numberOfItems - 1 {
                     self?.dealingIcons = false
-                    self?.run(Constants.dealLastSound)
+                    self?.run(Resources.dealLastSound)
                 } else {
-                    self?.run(Constants.dealSound)
+                    self?.run(Resources.dealSound)
                 }
             }
         }
@@ -104,19 +114,21 @@ class GameScene: SKScene {
     }
     
     private func win() {
-        removeWithParticles(named: "VictoryExplosion")
+        removeWithParticles(named: Constants.victoryExplosionFileName)
         FortuneProvider.requestFortune { [weak self] result in
             var fortune = ""
             switch result {
             case .failure(let error):
                 print("Something went wrong getting fortune: \(error)")
-                fortune = "You rule!"
+                fortune = Resources.failedFetchWinText
             case .success(let data):
                 fortune = data
             }
             DispatchQueue.main.async {
                 guard let self = self else { return }
-                let transition = SKTransition.doorsOpenHorizontal(withDuration: 0.5)
+                let transition = SKTransition.doorsOpenHorizontal(
+                    withDuration: Constants.standardTransitionDuration
+                )
 
                 let endGameScene = EndGameScene(size: self.size)
                 endGameScene.text = fortune
@@ -129,13 +141,15 @@ class GameScene: SKScene {
     }
     
     private func lose() {
-        removeWithParticles(named: "LoseExplosion")
+        removeWithParticles(named: Constants.loseExplosionFileName)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
             guard let self = self else { return }
-            let transition = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
+            let transition = SKTransition.doorsCloseHorizontal(
+                withDuration: Constants.standardTransitionDuration
+            )
             
             let endGameScene = EndGameScene(size: self.size)
-            endGameScene.text = "Oooops"
+            endGameScene.text = Resources.loseText
             endGameScene.game = self.game
             endGameScene.scaleMode = .resizeFill
             
@@ -147,8 +161,8 @@ class GameScene: SKScene {
         selectionIndicators.forEach { $0.removeFromParent() }
         iconsNodes.forEach { icon in
             if let particles = SKEmitterNode(fileNamed: name) {
-                particles.position = icon.position
-             
+                particles.position = CGPoint(x: icon.frame.midX, y: icon.frame.midY)
+                
                 addChild(particles)
                 
                 let removeAfterFire = SKAction.sequence([
@@ -165,10 +179,17 @@ class GameScene: SKScene {
     // MARK: - Constants.
 
     private struct DrawingConst {
+        static let scaleOnTapValue = 0.9
+        static let scaleOnTapDuration = 0.15
+        
+        static let selectionSignRadius = 20.0
+        
+        static let iconSideFactor = 0.2
+        static let maxIconsRows = 3
+        
+        static let minIconsScattering = 20
+        
         static let iconsTopOffset = 150
-        static let iconSide = 80
-        static let minIconScattering = 50
         static let dealAnimationDelay = 0.8
-        static let iconSize = CGSize(width: iconSide, height: iconSide)
     }
 }

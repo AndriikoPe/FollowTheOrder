@@ -23,10 +23,13 @@ class EndGameScene: SKScene {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let transition = SKTransition.reveal(with: .down, duration: 1)
+        let transition = SKTransition.reveal(
+            with: .down,
+            duration: Constants.standardTransitionDuration * 2
+        )
         let gameScene = GameScene(size: size)
-
         gameScene.scaleMode = .resizeFill
+        
         if var game = game {
             game.playAgain()
             gameScene.game = game
@@ -38,13 +41,13 @@ class EndGameScene: SKScene {
     }
     
     private func createResultsLabel() {
-        let label = SKLabelNode(fontNamed: "Gill Sans")
-        label.text = text ?? "Lorem ipsum, dolor sit amet."
+        let label = SKLabelNode(fontNamed: Constants.resultsLabelFontName)
+        label.text = text ?? Resources.resultsDefaultText
         label.numberOfLines = 0
         Utils.adjustLabelFontSize(label: label, in: CGRect(
-            x: frame.width * 0.1,
+            x: frame.width * (1 - DrawingConst.resultsLabelWidthPercent) / 2.0,
             y: frame.height,
-            width: frame.width * 0.8,
+            width: frame.width * DrawingConst.resultsLabelWidthPercent,
             height: frame.height
         ))
         label.position = CGPoint(x: frame.midX, y: frame.midY -
@@ -53,24 +56,33 @@ class EndGameScene: SKScene {
     }
  
     private func createPlayAgainLabel() {
-        let label = SKLabelNode(fontNamed: "Helvetica Neue UltraLight Italic")
-        label.text = "Tap anywhere to play again..."
+        let label = SKLabelNode(fontNamed: Constants.hintFontName)
+        label.text = Resources.playAgainHintText
         Utils.adjustLabelFontSize(label: label, in: CGRect(
-            x: frame.width * 0.2,
+            x: frame.width * (1 - DrawingConst.hintLabelWidthPercent) / 2.0,
             y: frame.height,
-            width: frame.width * 0.6,
+            width: frame.width * DrawingConst.hintLabelWidthPercent,
             height: frame.height
         ))
-        label.position = CGPoint(x: frame.midX, y: frame.height * 0.3 -
-                                 label.frame.height / 2.0)
+        label.position = CGPoint(
+            x: frame.midX,
+            y: frame.height * DrawingConst.hintLabelYBottomOffset
+        )
         addChild(label)
     }
     
     private func victory() {
-        run(Constants.victorySound)
+        run(Resources.victorySound)
     }
     
     private func loss() {
-        run(Constants.lossSound)
+        run(Resources.lossSound)
+    }
+    
+    private struct DrawingConst {
+        static let resultsLabelWidthPercent = 0.8
+        static let hintLabelWidthPercent = 0.6
+        
+        static let hintLabelYBottomOffset = 0.3
     }
 }

@@ -14,6 +14,7 @@ class GameIconNode: SKSpriteNode {
         self.gameIcon = gameIcon
         let texture = SKTexture(imageNamed: gameIcon.type.rawValue)
         super.init(texture: texture, color: .clear, size: texture.size())
+        anchorPoint = .zero
     }
     
     required init?(coder aDecoder: NSCoder) {
