@@ -64,16 +64,28 @@ class GameScene: SKScene {
         guard let game = game else { return }
         dealingIcons = true
         
-        let iconSide = Int(size.width * DrawingConst.iconSideFactor)
+        let rows = min((game.numberOfItems - 1) >> 1, DrawingConst.maxIconsRows)
+        var columns = game.numberOfItems / rows
+        // Check if lost last column with integer division.
+        if columns * rows < game.numberOfItems { columns += 1 }
+        
+        let iconSide = min(
+            Int(DrawingConst.iconSideFactor * size.width) / rows,
+            Int(DrawingConst.iconSideFactor * size.height) / columns
+        )
+        
         let iconSize = CGSize(width: iconSide, height: iconSide)
         
-        let rows = min((game.numberOfItems - 1) >> 1, DrawingConst.maxIconsRows)
-        let containerSize = Int(size.width) / rows
+        let containerSize = min(
+            Int(size.width) / rows,
+            Int(size.height) / columns
+        )
+        
         let scatteringRange = (DrawingConst.minIconsScattering)...(containerSize - iconSide)
         let positions = game.icons.indices.map { index -> CGPoint in
             let xPos = Int.random(in: scatteringRange) + (index % rows) * containerSize
             let yPos = Int(size.height) - (index / rows) * containerSize -
-                Int.random(in: scatteringRange) - DrawingConst.iconsTopOffset
+                Int.random(in: scatteringRange) - iconSide - Int(view.safeAreaInsets.top)
             return CGPoint(x: xPos, y: yPos)
         }
         dealIcons(with: iconSize, at: positions.shuffled())
@@ -82,13 +94,17 @@ class GameScene: SKScene {
     private func dealIcons(with iconSize: CGSize, at positions: [CGPoint]) {
         guard let game = game else { return }
         positions.indices.forEach { [weak self] index in
-            DispatchQueue.main.asyncAfter(deadline: .now() +
-                                          DrawingConst.dealAnimationDelay * Double(index + 1)) {
-                let icon = GameIconNode(using: game.icons[index])
-                self?.iconsNodes.append(icon)
-                icon.position = positions[index]
-                icon.size = iconSize
-                self?.addChild(icon)
+            let icon = GameIconNode(using: game.icons[index])
+            let delay = SKAction.wait(
+                forDuration: DrawingConst.dealAnimationDelay * Double(index + 1)
+            )
+            self?.iconsNodes.append(icon)
+            icon.position = positions[index]
+            icon.size = iconSize
+            icon.alpha = 0
+            self?.addChild(icon)
+            icon.run(delay) {
+                icon.alpha = 1
                 // Check if dealt last icon.
                 if index == game.numberOfItems - 1 {
                     self?.dealingIcons = false
@@ -184,12 +200,12 @@ class GameScene: SKScene {
         
         static let selectionSignRadius = 20.0
         
-        static let iconSideFactor = 0.2
-        static let maxIconsRows = 3
+        static let iconSideFactor = 0.7
+        static let maxIconsRows = 4
         
-        static let minIconsScattering = 20
+        static let minIconsScattering = 0
         
-        static let iconsTopOffset = 150
+        static let iconsTopOffset = 100
         static let dealAnimationDelay = 0.8
     }
 }
